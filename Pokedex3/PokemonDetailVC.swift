@@ -31,7 +31,31 @@ class PokemonDetailVC: UIViewController {
         
         nameLbl.text = pokemon.name
         
+        let img = UIImage(named: "\(pokemon.pokedexId)")
         
+        mainImg.image = img
+        currentEvoImg.image = img
+        pokedexIdLbl.text = "\(pokemon.pokedexId)"
+        
+        pokemon.downlaodPokemonDetail {
+            // only call after newtwork call complete
+            print("Det funger")
+            self.updateUI()
+            
+            
+        }
+        
+        
+    }
+    
+    func updateUI() {
+        
+        attackLbl.text = pokemon.attack
+        DefenseLbl.text = pokemon.defense
+        heightLbl.text = pokemon.defense
+        weightLbl.text = pokemon.weight
+        // pokedexIdLbl.text = pokemon.pokedexId
+        // typeLbl.text = pokemon.type
         
         
     }
