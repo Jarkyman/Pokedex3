@@ -29,7 +29,7 @@ class PokemonDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameLbl.text = pokemon.name
+        nameLbl.text = pokemon.name.capitalized
         
         let img = UIImage(named: "\(pokemon.pokedexId)")
         
@@ -39,7 +39,8 @@ class PokemonDetailVC: UIViewController {
         
         pokemon.downlaodPokemonDetail {
             // only call after newtwork call complete
-            print("Det funger")
+            
+            
             self.updateUI()
             
             
@@ -54,8 +55,18 @@ class PokemonDetailVC: UIViewController {
         DefenseLbl.text = pokemon.defense
         heightLbl.text = pokemon.defense
         weightLbl.text = pokemon.weight
-        // pokedexIdLbl.text = pokemon.pokedexId
-        // typeLbl.text = pokemon.type
+        typeLbl.text = pokemon.type
+        descriptionLbl.text = pokemon.description
+        
+        if pokemon.nextEvoId == " " {
+            evoLbl.text = "No Evolutions"
+            nextEvoImg.isHidden = true
+        }else {
+            nextEvoImg.isHidden = false
+            nextEvoImg.image = UIImage(named: pokemon.nextEvoId)
+            let str = "Next Evolution: \(pokemon.nextEvoName) - LVL \(pokemon.nextEvoLevel)"
+            evoLbl.text = str
+        }
         
         
     }
